@@ -6,38 +6,33 @@
  * @exports BMNGOneImageLayer
  * @version $Id: BMNGOneImageLayer.js 2942 2015-03-30 21:16:36Z tgaskins $
  */
-define([
-        '../layer/RenderableLayer',
-        '../geom/Sector',
-        '../shapes/SurfaceImage',
-        '../util/WWUtil'
-    ],
-    function (RenderableLayer,
-              Sector,
-              SurfaceImage,
-              WWUtil) {
-        "use strict";
+import RenderableLayer from '../layer/RenderableLayer';
+import Sector from '../geom/Sector';
+import SurfaceImage from '../shapes/SurfaceImage';
 
-        /**
-         * Constructs a Blue Marble image layer that spans the entire globe.
-         * @alias BMNGOneImageLayer
-         * @constructor
-         * @augments RenderableLayer
-         * @classdesc Displays a Blue Marble image layer that spans the entire globe with a single image.
-         */
-        var BMNGOneImageLayer = function () {
-            RenderableLayer.call(this, "Blue Marble Image");
+import * as WorldWind from '../constants';
 
-            var surfaceImage = new SurfaceImage(Sector.FULL_SPHERE,
-                WorldWind.configuration.baseUrl + "images/BMNG_world.topo.bathy.200405.3.2048x1024.jpg");
+/**
+ * Constructs a Blue Marble image layer that spans the entire globe.
+ * @alias BMNGOneImageLayer
+ * @constructor
+ * @augments RenderableLayer
+ * @classdesc Displays a Blue Marble image layer that spans the entire globe with a single image.
+ */
+var BMNGOneImageLayer = function (imgSrc) {
+    RenderableLayer.call(this, "Blue Marble Image");
 
-            this.addRenderable(surfaceImage);
+    imgSrc = imgSrc ||
+        WorldWind.configuration.baseUrl + "images/BMNG_world.topo.bathy.200405.3.2048x1024.jpg";
 
-            this.pickEnabled = false;
-            this.minActiveAltitude = 3e6;
-        };
+    var surfaceImage = new SurfaceImage(Sector.FULL_SPHERE, imgSrc);
 
-        BMNGOneImageLayer.prototype = Object.create(RenderableLayer.prototype);
+    this.addRenderable(surfaceImage);
 
-        return BMNGOneImageLayer;
-    });
+    this.pickEnabled = false;
+    this.minActiveAltitude = 3e6;
+};
+
+BMNGOneImageLayer.prototype = Object.create(RenderableLayer.prototype);
+
+export default BMNGOneImageLayer;
