@@ -210,7 +210,7 @@ export {default as SurfacePolygon} from './shapes/SurfacePolygon';
 export {default as TriangleMesh} from './shapes/TriangleMesh';
 //export {default as UnsupportedOperationError} from './error/UnsupportedOperationError';
 //export {default as Vec2} from './geom/Vec2';
-//export {default as Vec3} from './geom/Vec3';
+export {default as Vec3} from './geom/Vec3';
 //export {default as ViewControlsLayer} from './layer/ViewControlsLayer';
 //export {default as ViewVolume} from './formats/kml/util/ViewVolume';
 //export {default as WcsTileUrlBuilder} from './util/WcsTileUrlBuilder';
